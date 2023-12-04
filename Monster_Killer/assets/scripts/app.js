@@ -69,12 +69,10 @@ const attack = (attackType) => {
   }
 }
 
-const onStandartAttack = () => {
-  attack(ATTACK_STANDART)
-}
-
-const onStrongAttack = () => {
-  attack(ATTACK_STRONG)
+const restoreHeroHealth = () => {
+  increaseHeroHealth(+HEAL_VALUE)
+  healCountEl.innerText -= 1
+  writeToLog(`${heroNameEl.innerText} restored ${HEAL_VALUE} health!`)
 }
 
 const onHeal = () => {
@@ -97,9 +95,7 @@ const onHeal = () => {
         confirmButtonText: 'Sure!',
       }).then((choise) => {
         if (choise.value) {
-          increaseHeroHealth(+HEAL_VALUE)
-          healCountEl.innerText -= 1
-          writeToLog(`${heroNameEl.innerText} restored ${HEAL_VALUE} health!`)
+          restoreHeroHealth()
         }
       })
     } else
@@ -111,9 +107,7 @@ const onHeal = () => {
         confirmButtonText: 'Yes',
       }).then((choise) => {
         if (choise.value) {
-          increaseHeroHealth(+HEAL_VALUE)
-          healCountEl.innerText -= 1
-          writeToLog(`${heroNameEl.innerText} restored ${HEAL_VALUE} health!`)
+          restoreHeroHealth()
         }
       })
   }
@@ -140,13 +134,11 @@ const writeToLog = (event) => {
   logEntryEl.className = 'log-entry'
   logDateSpan.className = 'log-date'
   logTextSpan.className = 'log-text'
-
   logDateSpan.textContent = '[' + new Date().toLocaleTimeString() + ']'
   logTextSpan.textContent = ' ' + event
 
   logEntryEl.appendChild(logDateSpan)
   logEntryEl.appendChild(logTextSpan)
-
   logEntriesSection.appendChild(logEntryEl)
   logEntriesSection.scrollTop = logEntriesSection.scrollHeight
 }
@@ -162,8 +154,8 @@ const onToggleLogVisibility = () => {
   }
 }
 
-attackBtn.addEventListener('click', onStandartAttack)
-strongAttackBtn.addEventListener('click', onStrongAttack)
+attackBtn.addEventListener('click', () => attack(ATTACK_STANDART))
+strongAttackBtn.addEventListener('click', () => attack(ATTACK_STRONG))
 healBtn.addEventListener('click', onHeal)
 startOverBtn.addEventListener('click', onStartOver)
 hideLogBtn.addEventListener('click', onToggleLogVisibility)

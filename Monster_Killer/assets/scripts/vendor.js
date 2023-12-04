@@ -13,14 +13,14 @@ const hideLogBtn = document.getElementById('hide-log-btn')
 const battleLogSection = document.getElementById('battle-log')
 const logEntriesSection = document.getElementById('log-entries')
 
-function adjustHealthBars(maxLife) {
+const adjustHealthBars = (maxLife) => {
   monsterHealthBar.max = maxLife
   monsterHealthBar.value = maxLife
   heroHealthBar.max = maxLife
   heroHealthBar.value = maxLife
 }
 
-function setHeroName() {
+const setHeroName = () => {
   Swal.fire({
     title: `Please enter hero's name`,
     input: 'text',
@@ -41,24 +41,24 @@ function setHeroName() {
   })
 }
 
-function dealMonsterDamage(damage) {
+const dealMonsterDamage = (damage) => {
   const dealtDamage = (Math.random() * damage).toFixed(0)
   monsterHealthBar.value = +monsterHealthBar.value - dealtDamage
   return dealtDamage
 }
 
-function dealHeroDamage(damage) {
+const dealHeroDamage = (damage) => {
   const dealtDamage = (Math.random() * damage).toFixed(0)
   heroHealthBar.value = +heroHealthBar.value - dealtDamage
   return dealtDamage
 }
 
-function increaseHeroHealth(healValue) {
+const increaseHeroHealth = (healValue) => {
   heroHealthBar.value = +heroHealthBar.value + healValue
   currentHeroLife = heroHealthBar.value
 }
 
-function resetValues() {
+const resetValues = () => {
   adjustHealthBars(CHOSEN_MAX_LIFE)
   currentMonsterLife = +heroHealthBar.value
   currentHeroLife = +monsterHealthBar.value
@@ -66,10 +66,10 @@ function resetValues() {
   document.querySelectorAll('.log-entry').forEach((element) => element.remove())
 }
 
-function removeBonusLife() {
+const removeBonusLife = () => {
   bonusLifeEl.parentNode.removeChild(bonusLifeEl)
 }
 
-function setHeroHealth(health) {
+const setHeroHealth = (health) => {
   heroHealthBar.value = health
 }
