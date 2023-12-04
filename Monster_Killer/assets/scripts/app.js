@@ -14,7 +14,7 @@ let hasBonusLife = true
 adjustHealthBars(CHOSEN_MAX_LIFE)
 setHeroName()
 
-function attack(attackType) {
+const attack = (attackType) => {
   let heroAttack =
     attackType === ATTACK_STANDART
       ? HERO_STANDART_ATTACK_VALUE
@@ -25,7 +25,9 @@ function attack(attackType) {
   if (currentMonsterLife > 0 && currentHeroLife > 0) {
     const dealtHeroDamage = dealMonsterDamage(heroAttack)
     currentMonsterLife -= dealtHeroDamage
-    writeToLog(`${heroNameEl.innerText} deals ${dealtHeroDamage} damage to Monster`)
+    writeToLog(
+      `${heroNameEl.innerText} deals ${dealtHeroDamage} damage to Monster`
+    )
     if (currentMonsterLife <= 0) {
       Swal.fire({
         title: 'You won!',
@@ -39,7 +41,9 @@ function attack(attackType) {
 
     const dealtMonsterDamage = dealHeroDamage(MONSTER_ATTACK_VALUE)
     currentHeroLife -= dealtMonsterDamage
-    writeToLog(`Monster deals ${dealtMonsterDamage} damage to ${heroNameEl.innerText}`)
+    writeToLog(
+      `Monster deals ${dealtMonsterDamage} damage to ${heroNameEl.innerText}`
+    )
     if (currentHeroLife <= 0 && hasBonusLife) {
       hasBonusLife = false
       removeBonusLife()
@@ -65,15 +69,15 @@ function attack(attackType) {
   }
 }
 
-function onStandartAttack() {
+const onStandartAttack = () => {
   attack(ATTACK_STANDART)
 }
 
-function onStrongAttack() {
+const onStrongAttack = () => {
   attack(ATTACK_STRONG)
 }
 
-function onHeal() {
+const onHeal = () => {
   if (currentMonsterLife > 0 && currentHeroLife > 0) {
     if (+healCountEl.innerText <= 0) {
       Swal.fire({
@@ -115,7 +119,7 @@ function onHeal() {
   }
 }
 
-function onStartOver() {
+const onStartOver = () => {
   Swal.fire({
     title: 'Do you want to start over?',
     icon: 'question',
@@ -128,7 +132,7 @@ function onStartOver() {
   })
 }
 
-function writeToLog(event) {
+const writeToLog = (event) => {
   const logEntryEl = document.createElement('p')
   const logDateSpan = document.createElement('span')
   const logTextSpan = document.createElement('span')
@@ -147,7 +151,7 @@ function writeToLog(event) {
   logEntriesSection.scrollTop = logEntriesSection.scrollHeight
 }
 
-function onToggleLogVisibility() {
+const onToggleLogVisibility = () => {
   if (battleLogSection.style.display !== 'none') {
     battleLogSection.style.display = 'none'
     hideLogBtn.textContent = 'SHOW GAME LOG'
