@@ -13,7 +13,7 @@ const hideLogBtn = document.getElementById('hide-log-btn')
 const battleLogSection = document.getElementById('battle-log')
 const logEntriesSection = document.getElementById('log-entries')
 
-const adjustHealthBars = (maxLife) => {
+const prepareGame = (maxLife) => {
   monsterHealthBar.max = maxLife
   monsterHealthBar.value = maxLife
   heroHealthBar.max = maxLife
@@ -42,14 +42,16 @@ const setHeroName = () => {
 }
 
 const dealMonsterDamage = (damage) => {
-  const dealtDamage = (Math.random() * damage).toFixed(0)
+  const dealtDamage = Math.round(Math.random() * damage)
   monsterHealthBar.value = +monsterHealthBar.value - dealtDamage
+  currentMonsterLife -= dealtDamage
   return dealtDamage
 }
 
 const dealHeroDamage = (damage) => {
-  const dealtDamage = (Math.random() * damage).toFixed(0)
+  const dealtDamage = Math.round(Math.random() * damage)
   heroHealthBar.value = +heroHealthBar.value - dealtDamage
+  currentHeroLife -= dealtDamage
   return dealtDamage
 }
 
@@ -59,10 +61,10 @@ const increaseHeroHealth = (healValue) => {
 }
 
 const resetValues = () => {
-  adjustHealthBars(CHOSEN_MAX_LIFE)
+  prepareGame(CHOSEN_MAX_LIFE)
   currentMonsterLife = +heroHealthBar.value
   currentHeroLife = +monsterHealthBar.value
-  healCountEl.innerText = HEAL_COUNT_VALUE
+  healCountEl.innerText = healCountEl.getAttribute('max')
   document.querySelectorAll('.log-entry').forEach((element) => element.remove())
 }
 

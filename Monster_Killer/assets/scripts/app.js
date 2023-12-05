@@ -1,32 +1,23 @@
-const CHOSEN_MAX_LIFE = (Math.random() * (1001 - 500) + 500).toFixed(0)
-const HERO_STANDART_ATTACK_VALUE = CHOSEN_MAX_LIFE * 0.1
-const HERO_STRONG_ATTACK_VALUE = HERO_STANDART_ATTACK_VALUE * 1.8
-const MONSTER_ATTACK_VALUE = CHOSEN_MAX_LIFE * 0.15
-const HEAL_COUNT_VALUE = 3
-const HEAL_VALUE = (CHOSEN_MAX_LIFE * 0.2).toFixed(0)
-const ATTACK_STANDART = 'Standart'
-const ATTACK_STRONG = 'Strong'
+const CHOSEN_MAX_LIFE = Math.round(Math.random() * (1001 - 500) + 500)
+const HERO_ATTACK = [
+  { type: 'Standart', value: Math.round(CHOSEN_MAX_LIFE * 0.1) },
+  { type: 'Strong', value: Math.round(CHOSEN_MAX_LIFE * 0.1 * 1.8) },
+]
+const MONSTER_ATTACK_VALUE = Math.round(CHOSEN_MAX_LIFE * 0.15)
+const HEAL_VALUE = Math.round(CHOSEN_MAX_LIFE * 0.2)
 
 let currentMonsterLife = CHOSEN_MAX_LIFE
 let currentHeroLife = CHOSEN_MAX_LIFE
 let hasBonusLife = true
 
-adjustHealthBars(CHOSEN_MAX_LIFE)
+prepareGame(CHOSEN_MAX_LIFE)
 setHeroName()
 
-const attack = (attackType) => {
-  let heroAttack =
-    attackType === ATTACK_STANDART
-      ? HERO_STANDART_ATTACK_VALUE
-      : attackType === ATTACK_STRONG
-      ? HERO_STRONG_ATTACK_VALUE
-      : false
-
+const attack = (heroAttack) => {
   if (currentMonsterLife > 0 && currentHeroLife > 0) {
-    const dealtHeroDamage = dealMonsterDamage(heroAttack)
-    currentMonsterLife -= dealtHeroDamage
+    const heroDealtDamage = dealMonsterDamage(heroAttack.value)
     writeToLog(
-      `${heroNameEl.innerText} deals ${dealtHeroDamage} damage to Monster`
+      `${heroNameEl.innerText} deals ${heroDealtDamage} damage to Monster`
     )
     if (currentMonsterLife <= 0) {
       Swal.fire({
@@ -39,10 +30,9 @@ const attack = (attackType) => {
       return
     }
 
-    const dealtMonsterDamage = dealHeroDamage(MONSTER_ATTACK_VALUE)
-    currentHeroLife -= dealtMonsterDamage
+    const monsterDealtDamage = dealHeroDamage(MONSTER_ATTACK_VALUE)
     writeToLog(
-      `Monster deals ${dealtMonsterDamage} damage to ${heroNameEl.innerText}`
+      `Monster deals ${monsterDealtDamage} damage to ${heroNameEl.innerText}`
     )
     if (currentHeroLife <= 0 && hasBonusLife) {
       hasBonusLife = false
@@ -154,8 +144,8 @@ const onToggleLogVisibility = () => {
   }
 }
 
-attackBtn.addEventListener('click', () => attack(ATTACK_STANDART))
-strongAttackBtn.addEventListener('click', () => attack(ATTACK_STRONG))
+attackBtn.addEventListener('click', () => attack(HERO_ATTACK[0]))
+strongAttackBtn.addEventListener('click', () => attack(HERO_ATTACK[1]))
 healBtn.addEventListener('click', onHeal)
 startOverBtn.addEventListener('click', onStartOver)
 hideLogBtn.addEventListener('click', onToggleLogVisibility)
