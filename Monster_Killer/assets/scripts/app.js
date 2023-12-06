@@ -13,7 +13,7 @@ let hasBonusLife = true
 prepareGame(CHOSEN_MAX_LIFE)
 setHeroName()
 
-const attack = (heroAttack) => {
+const attack = heroAttack => {
   if (currentMonsterLife > 0 && currentHeroLife > 0) {
     const heroDealtDamage = dealMonsterDamage(heroAttack.value)
     writeToLog(
@@ -116,7 +116,7 @@ const onStartOver = () => {
   })
 }
 
-const writeToLog = (event) => {
+const writeToLog = event => {
   const logEntryEl = document.createElement('p')
   const logDateSpan = document.createElement('span')
   const logTextSpan = document.createElement('span')
