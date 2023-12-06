@@ -83,7 +83,7 @@ const onHeal = () => {
         showDenyButton: true,
         denyButtonText: 'Nah',
         confirmButtonText: 'Sure!',
-      }).then((choise) => {
+      }).then(choise => {
         if (choise.value) {
           restoreHeroHealth()
         }
@@ -95,7 +95,7 @@ const onHeal = () => {
         showDenyButton: true,
         denyButtonText: 'No',
         confirmButtonText: 'Yes',
-      }).then((choise) => {
+      }).then(choise => {
         if (choise.value) {
           restoreHeroHealth()
         }
@@ -111,7 +111,7 @@ const onStartOver = () => {
     focusDeny: true,
     denyButtonText: 'Nope',
     confirmButtonText: 'Yep',
-  }).then((choise) => {
+  }).then(choise => {
     choise.value ? resetValues() : null
   })
 }

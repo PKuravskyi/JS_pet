@@ -13,7 +13,7 @@ const hideLogBtn = document.getElementById('hide-log-btn')
 const battleLogSection = document.getElementById('battle-log')
 const logEntriesSection = document.getElementById('log-entries')
 
-const prepareGame = (maxLife) => {
+const prepareGame = maxLife => {
   monsterHealthBar.max = maxLife
   monsterHealthBar.value = maxLife
   heroHealthBar.max = maxLife
@@ -29,7 +29,7 @@ const setHeroName = () => {
     inputAttributes: {
       maxlength: 12,
     },
-    inputValidator: (value) => {
+    inputValidator: value => {
       if (!value) {
         return "Name can't be empty!"
       } else if (!/^[a-zA-Z\s]*$/.test(value)) {
@@ -41,21 +41,21 @@ const setHeroName = () => {
   })
 }
 
-const dealMonsterDamage = (damage) => {
+const dealMonsterDamage = damage => {
   const dealtDamage = Math.round(Math.random() * damage)
   monsterHealthBar.value = +monsterHealthBar.value - dealtDamage
   currentMonsterLife -= dealtDamage
   return dealtDamage
 }
 
-const dealHeroDamage = (damage) => {
+const dealHeroDamage = damage => {
   const dealtDamage = Math.round(Math.random() * damage)
   heroHealthBar.value = +heroHealthBar.value - dealtDamage
   currentHeroLife -= dealtDamage
   return dealtDamage
 }
 
-const increaseHeroHealth = (healValue) => {
+const increaseHeroHealth = healValue => {
   heroHealthBar.value = +heroHealthBar.value + healValue
   currentHeroLife = heroHealthBar.value
 }
@@ -65,13 +65,9 @@ const resetValues = () => {
   currentMonsterLife = +heroHealthBar.value
   currentHeroLife = +monsterHealthBar.value
   healCountEl.innerText = healCountEl.getAttribute('max')
-  document.querySelectorAll('.log-entry').forEach((element) => element.remove())
+  document.querySelectorAll('.log-entry').forEach(element => element.remove())
 }
 
-const removeBonusLife = () => {
-  bonusLifeEl.parentNode.removeChild(bonusLifeEl)
-}
+const removeBonusLife = () => bonusLifeEl.parentNode.removeChild(bonusLifeEl)
 
-const setHeroHealth = (health) => {
-  heroHealthBar.value = health
-}
+const setHeroHealth = health => (heroHealthBar.value = health)
