@@ -45,22 +45,6 @@ function calculate(operator) {
   printResultHistory()
 }
 
-function add() {
-  calculate('+')
-}
-
-function subtract() {
-  calculate('-')
-}
-
-function multiply() {
-  calculate('*')
-}
-
-function divide() {
-  calculate('/')
-}
-
 function clearData() {
   userInput.value = 0
   currentResultOutput.textContent = 0
@@ -69,8 +53,8 @@ function clearData() {
   console.clear()
 }
 
-addBtn.addEventListener('click', add)
-subtractBtn.addEventListener('click', subtract)
-multiplyBtn.addEventListener('click', multiply)
-divideBtn.addEventListener('click', divide)
+addBtn.addEventListener('click', calculate.bind(this, '+'))
+subtractBtn.addEventListener('click', calculate.bind(this, '-'))
+multiplyBtn.addEventListener('click', calculate.bind(this, '*'))
+divideBtn.addEventListener('click', calculate.bind(this, '/'))
 clearBtn.addEventListener('click', clearData)
