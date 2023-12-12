@@ -23,15 +23,15 @@ const userMoviesList = []
 
 let movieToDeleteId
 
-const displayElement = () => (el.style.display = 'block')
-const undisplayElement = () => (el.style.display = 'none')
+const displayElement = el => (el.style.display = 'block')
+const undisplayElement = el => (el.style.display = 'none')
 const makeVisibleElement = el => el.classList.add('visible')
 const makeInvisibleElement = el => el.classList.remove('visible')
 
 const clearAddMovieInputs = () => {
-  for (const addMovieInput of addMovieInputs) {
-    addMovieInput.value = ''
-  }
+  addMovieTitleInput.value = ''
+  addMovieImageInput.value = ''
+  addMovieRatingInput.value = ''
 
   undisplayElement(inpuTitleErrorText)
   undisplayElement(inputImageErrorText)
@@ -128,7 +128,10 @@ const addMovie = () => {
 
   movieListEl.appendChild(movieItemEl)
   undisplayElement(entryTextEl)
-  movieItemEl.addEventListener('click', showDeleteMovieModal.bind(null, movie.id))
+  movieItemEl.addEventListener(
+    'click',
+    showDeleteMovieModal.bind(null, movie.id)
+  )
 }
 
 backdropEl.addEventListener('click', () => {
