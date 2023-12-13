@@ -5,9 +5,8 @@ const movieListEl = document.getElementById('movie-list')
 // add movie modal
 const addMovieModalEl = document.getElementById('add-modal')
 const addMovieInputs = document.querySelectorAll('.modal__content input')
-const addMovieTitleInput = addMovieInputs[0]
-const addMovieImageInput = addMovieInputs[1]
-const addMovieRatingInput = addMovieInputs[2]
+const [addMovieTitleInput, addMovieImageInput, addMovieRatingInput] =
+  addMovieInputs
 const inpuTitleErrorText = document.getElementById('title-error')
 const inputImageErrorText = document.getElementById('image-error')
 const inputRatingEmptyErrorText = document.getElementById('rating-empty-error')
