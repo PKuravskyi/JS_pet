@@ -1,6 +1,7 @@
 const backdropEl = document.getElementById('backdrop')
 const entryTextEl = document.getElementById('entry-text')
-const addMovieBtn = document.querySelector('header button')
+const filterMoviesBtn = document.getElementById('filter-movies')
+const addMovieBtn = document.getElementById('add-movie')
 const movieListEl = document.getElementById('movie-list')
 // add movie modal
 const addMovieModalEl = document.getElementById('add-modal')
@@ -68,12 +69,14 @@ const deleteMovie = () => {
   for (let i = 0; i <= userMoviesList.length; i++) {
     if (userMoviesList[i].id === movieToDeleteId) {
       // delete from BE
-      userMoviesList.splice(userMoviesList[i], 1)
+      userMoviesList.splice(i, 1)
       // delete from UI
       movieListEl.children[i].remove()
+      hideDeleteMovieModal()
+      userMoviesList.length === 0 ? displayElement(entryTextEl) : null
+      userMoviesList.length <= 1 ? makeInvisibleElement(filterMoviesBtn) : null
+      break
     }
-    hideDeleteMovieModal()
-    userMoviesList.length === 0 ? displayElement(entryTextEl) : null
   }
 }
 
@@ -131,7 +134,10 @@ const addMovie = () => {
     'click',
     showDeleteMovieModal.bind(null, movie.id)
   )
+  userMoviesList.length > 1 ? makeVisibleElement(filterMoviesBtn) : null
 }
+
+const sortMovies = () => {}
 
 backdropEl.addEventListener('click', () => {
   showBackdrop()
