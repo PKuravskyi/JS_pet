@@ -1,6 +1,5 @@
 const backdropEl = document.getElementById('backdrop')
 const entryTextEl = document.getElementById('entry-text')
-const filterMoviesBtn = document.getElementById('filter-movies')
 const addMovieBtn = document.getElementById('add-movie')
 const movieListEl = document.getElementById('movie-list')
 // add movie modal
@@ -18,6 +17,20 @@ const addMovieModalAddBtn = addMovieModalEl.querySelector('.btn--success')
 const deleteMovieModalEl = document.getElementById('delete-modal')
 const deleteMovieModalNoBtn = deleteMovieModalEl.querySelector('.btn--passive')
 const deleteMovieModalYesBtn = deleteMovieModalEl.querySelector('.btn--danger')
+// filter movies modal
+const sortMoviesBtn = document.getElementById('sort-movies')
+const sortMoviesModalEl = document.getElementById('sort-modal')
+const sortMoviesByTitleDescBtn = document.getElementById(
+  'sort-title-descending'
+)
+const sortMoviesByTitleAscBtn = document.getElementById('sort-title-ascending')
+const sortMoviesByRatingDescBtn = document.getElementById(
+  'sort-rating-descending'
+)
+const sortMoviesByRatingAscBtn = document.getElementById(
+  'sort-rating-ascending'
+)
+const sortMoviesCancelBtn = document.getElementById('sort-cancel')
 
 const userMoviesList = []
 
@@ -65,6 +78,11 @@ const hideDeleteMovieModal = () => {
   hideBackdrop()
 }
 
+const hideSortMoviesModal = () => {
+  makeInvisibleElement(sortMoviesModalEl)
+  hideBackdrop()
+}
+
 const deleteMovie = () => {
   for (let i = 0; i <= userMoviesList.length; i++) {
     if (userMoviesList[i].id === movieToDeleteId) {
@@ -74,7 +92,7 @@ const deleteMovie = () => {
       movieListEl.children[i].remove()
       hideDeleteMovieModal()
       userMoviesList.length === 0 ? displayElement(entryTextEl) : null
-      userMoviesList.length <= 1 ? makeInvisibleElement(filterMoviesBtn) : null
+      userMoviesList.length <= 1 ? makeInvisibleElement(sortMoviesBtn) : null
       break
     }
   }
@@ -124,8 +142,8 @@ const addMovie = () => {
     <img src="${movie.image}" alt="${movie.title}">
   </div>
   <div class="movie-element__info">
-    <h2>${movie.title}</h2>
-    <p>${movie.rating}/10 stars</p>
+    <h2 class="movie-element__title">${movie.title}</h2>
+    <p class="movie-element__rating">${movie.rating}</p>
   </div>`
 
   movieListEl.appendChild(movieItemEl)
@@ -134,10 +152,46 @@ const addMovie = () => {
     'click',
     showDeleteMovieModal.bind(null, movie.id)
   )
-  userMoviesList.length > 1 ? makeVisibleElement(filterMoviesBtn) : null
+  userMoviesList.length > 1 ? makeVisibleElement(sortMoviesBtn) : null
 }
 
-const sortMovies = () => {}
+const showSortMovies = () => {
+  makeVisibleElement(sortMoviesModalEl)
+  showBackdrop()
+}
+
+const getMovieRating = movie => {
+  return +movie.querySelector('.movie-element__rating').innerText
+}
+
+const sortMovies = method => {
+  const movies = Array.from(movieListEl.children)
+
+  switch (method) {
+    case sortMoviesByTitleDescBtn.innerText:
+      movies.sort((a, b) => b.textContent.localeCompare(a.textContent))
+      userMoviesList.sort((a, b) => b.title.localeCompare(a.title))
+      break
+    case sortMoviesByTitleAscBtn.innerText:
+      movies.sort((a, b) => a.textContent.localeCompare(b.textContent))
+      userMoviesList.sort((a, b) => a.title.localeCompare(b.title))
+      break
+    case sortMoviesByRatingDescBtn.innerText:
+      movies.sort((a, b) => getMovieRating(b) - getMovieRating(a))
+      userMoviesList.sort((a, b) => +b.rating - +a.rating)
+      break
+    case sortMoviesByRatingAscBtn.innerText:
+      movies.sort((a, b) => getMovieRating(a) - getMovieRating(b))
+      userMoviesList.sort((a, b) => +a.rating - +b.rating)
+      break
+  }
+
+  movies.forEach(movie => {
+    movie.remove()
+    movieListEl.appendChild(movie)
+  })
+  hideSortMoviesModal()
+}
 
 backdropEl.addEventListener('click', () => {
   showBackdrop()
@@ -152,3 +206,21 @@ addMovieModalCancelBtn.addEventListener('click', () => {
 })
 deleteMovieModalYesBtn.addEventListener('click', deleteMovie)
 deleteMovieModalNoBtn.addEventListener('click', () => hideDeleteMovieModal())
+sortMoviesBtn.addEventListener('click', showSortMovies)
+sortMoviesByTitleDescBtn.addEventListener(
+  'click',
+  sortMovies.bind(null, sortMoviesByTitleDescBtn.innerText)
+)
+sortMoviesByTitleAscBtn.addEventListener(
+  'click',
+  sortMovies.bind(null, sortMoviesByTitleAscBtn.innerText)
+)
+sortMoviesByRatingDescBtn.addEventListener(
+  'click',
+  sortMovies.bind(null, sortMoviesByRatingDescBtn.innerText)
+)
+sortMoviesByRatingAscBtn.addEventListener(
+  'click',
+  sortMovies.bind(null, sortMoviesByRatingAscBtn.innerText)
+)
+sortMoviesCancelBtn.addEventListener('click', () => hideSortMoviesModal())
