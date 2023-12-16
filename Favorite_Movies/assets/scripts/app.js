@@ -168,19 +168,19 @@ const sortMovies = method => {
   const movies = Array.from(movieListEl.children)
 
   switch (method) {
-    case sortMoviesByTitleDescBtn.innerText:
+    case sortMoviesByTitleDescBtn.textContent:
       movies.sort((a, b) => b.textContent.localeCompare(a.textContent))
       userMoviesList.sort((a, b) => b.title.localeCompare(a.title))
       break
-    case sortMoviesByTitleAscBtn.innerText:
+    case sortMoviesByTitleAscBtn.textContent:
       movies.sort((a, b) => a.textContent.localeCompare(b.textContent))
       userMoviesList.sort((a, b) => a.title.localeCompare(b.title))
       break
-    case sortMoviesByRatingDescBtn.innerText:
+    case sortMoviesByRatingDescBtn.textContent:
       movies.sort((a, b) => getMovieRating(b) - getMovieRating(a))
       userMoviesList.sort((a, b) => +b.rating - +a.rating)
       break
-    case sortMoviesByRatingAscBtn.innerText:
+    case sortMoviesByRatingAscBtn.textContent:
       movies.sort((a, b) => getMovieRating(a) - getMovieRating(b))
       userMoviesList.sort((a, b) => +a.rating - +b.rating)
       break
@@ -209,18 +209,18 @@ deleteMovieModalNoBtn.addEventListener('click', () => hideDeleteMovieModal())
 sortMoviesBtn.addEventListener('click', showSortMovies)
 sortMoviesByTitleDescBtn.addEventListener(
   'click',
-  sortMovies.bind(null, sortMoviesByTitleDescBtn.innerText)
+  sortMovies.bind(null, sortMoviesByTitleDescBtn.textContent)
 )
 sortMoviesByTitleAscBtn.addEventListener(
   'click',
-  sortMovies.bind(null, sortMoviesByTitleAscBtn.innerText)
+  sortMovies.bind(null, sortMoviesByTitleAscBtn.textContent)
 )
 sortMoviesByRatingDescBtn.addEventListener(
   'click',
-  sortMovies.bind(null, sortMoviesByRatingDescBtn.innerText)
+  sortMovies.bind(null, sortMoviesByRatingDescBtn.textContent)
 )
 sortMoviesByRatingAscBtn.addEventListener(
   'click',
-  sortMovies.bind(null, sortMoviesByRatingAscBtn.innerText)
+  sortMovies.bind(null, sortMoviesByRatingAscBtn.textContent)
 )
 sortMoviesCancelBtn.addEventListener('click', () => hideSortMoviesModal())
