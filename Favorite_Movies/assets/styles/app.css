@@ -244,6 +244,11 @@ input:focus {
   flex-direction: column;
 }
 
+#sort-btn-passive-section {
+  display: flex;
+  padding-bottom: 1rem;
+}
+
 #title-error,
 #image-error,
 #rating-empty-error,
