@@ -35,21 +35,27 @@ class ShoppingCart extends Component {
     this.cartProducts = updatedProducts
   }
 
+  orderProducts() {
+    console.log(this.products)
+  }
+
   render() {
     const cartEl = this.createRootElement('section', 'cart')
     cartEl.innerHTML = `
-      <h2>Total: $${0}</h2>
-      <button>Order Now!</button>
+      <h2 id="total-amount">Total: $0</h2>
+      <button id="order-btn">Order Now!</button>
     `
-
-    this.totalOutput = cartEl.querySelector('h2')
+    const orderBtn = cartEl.querySelector('#order-btn')
+    orderBtn.addEventListener('click', () => this.orderProducts())
+    this.totalOutput = cartEl.querySelector('#total-amount')
   }
 }
 
 class ProductItem extends Component {
   constructor(product, renderHookId) {
-    super(renderHookId)
+    super(renderHookId, false)
     this.product = product
+    this.render()
   }
 
   addToCart() {
@@ -75,55 +81,67 @@ class ProductItem extends Component {
 }
 
 class ProductList extends Component {
-  products = [
-    new Product(
-      'Cheeseburger',
-      'https://cdn-media.choiceqr.com/prod-eat-vrebro/menu/GqBdFCE-MdRDjVt-kptEuuj.jpeg',
-      7.99,
-      'A mouthwatering blend of seasoned beef, melted cheese, fresh veggies, and our special sauce, all nestled in a soft, toasted bun.'
-    ),
-    new Product(
-      'CoCo Burger',
-      'https://cdn-media.choiceqr.com/prod-eat-vrebro/menu/KNbJYeF-zpsDPsD-flhHcaH.jpeg',
-      6.49,
-      'A delightful fusion of tender, seasoned chicken, melted cheese, crisp lettuce, juicy tomatoes, and our signature sauce, all embraced by a soft, toasted bun.'
-    ),
-    new Product(
-      'Shrimp Burger',
-      'https://cdn-media.choiceqr.com/prod-eat-vrebro/menu/CCwMjlG-duUymyW-EUFyeDG.jpeg',
-      11.99,
-      'A tantalizing blend of succulent shrimp, flavorful seasonings, crisp lettuce, ripe tomatoes, and our special sauce, all nestled within a soft, toasted bun.'
-    ),
-  ]
+  products = []
 
   constructor(renderHookId) {
     super(renderHookId)
+    this.#fetchProducts()
+  }
+
+  #fetchProducts() {
+    this.products = [
+      new Product(
+        'Cheeseburger',
+        'https://cdn-media.choiceqr.com/prod-eat-vrebro/menu/GqBdFCE-MdRDjVt-kptEuuj.jpeg',
+        7.99,
+        'A mouthwatering blend of seasoned beef, melted cheese, fresh veggies, and our special sauce, all nestled in a soft, toasted bun.'
+      ),
+      new Product(
+        'CoCo Burger',
+        'https://cdn-media.choiceqr.com/prod-eat-vrebro/menu/KNbJYeF-zpsDPsD-flhHcaH.jpeg',
+        6.49,
+        'A delightful fusion of tender, seasoned chicken, melted cheese, crisp lettuce, juicy tomatoes, and our signature sauce, all embraced by a soft, toasted bun.'
+      ),
+      new Product(
+        'Shrimp Burger',
+        'https://cdn-media.choiceqr.com/prod-eat-vrebro/menu/CCwMjlG-duUymyW-EUFyeDG.jpeg',
+        11.99,
+        'A tantalizing blend of succulent shrimp, flavorful seasonings, crisp lettuce, ripe tomatoes, and our special sauce, all nestled within a soft, toasted bun.'
+      ),
+    ]
+    this.renderProducts()
+  }
+
+  renderProducts() {
+    for (const prod of this.products) {
+      new ProductItem(prod, 'prod-list')
+    }
   }
 
   render() {
     this.createRootElement('ul', 'product-list', [
       new ElementAttribute('id', 'prod-list'),
     ])
-    for (const prod of this.products) {
-      const productItem = new ProductItem(prod, 'prod-list')
-      productItem.render()
+    if (this.products && this.products.length > 0) {
+      this.renderProducts()
     }
   }
 }
 
 class Shop {
+  constructor() {
+    this.render()
+  }
+
   render() {
     this.cart = new ShoppingCart('app')
-    this.cart.render()
-    const productList = new ProductList('app')
-    productList.render()
+    new ProductList('app')
   }
 }
 
 class App {
   static init() {
     const shop = new Shop()
-    shop.render()
     this.cart = shop.cart
   }
 
@@ -131,7 +149,5 @@ class App {
     this.cart.addProduct(product)
   }
 }
-
-const app = new App()
 
 App.init()
