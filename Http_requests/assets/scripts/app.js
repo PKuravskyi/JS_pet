@@ -1,29 +1,7 @@
 const postTemplate = document.getElementById('single-post')
 const newPostForm = document.querySelector('#new-post form')
-const addPostBtn = document.querySelector('#new-post button')
 const fetchPostsBtn = document.querySelector('#available-posts button')
 const postListEl = document.querySelector('.posts')
-
-function sendHttpRequest(method, url, data) {
-  return fetch(url, {
-    method: method,
-    body: JSON.stringify(data),
-  })
-    .then(response => {
-      if (response.status >= 200 && response.status < 300) {
-        return response.json()
-      } else {
-        return response.json().then(errData => {
-          console.log(errData)
-          throw new Error('Something went wrong - server-side!')
-        })
-      }
-    })
-    .catch(error => {
-      console.log(error)
-      throw new Error('Something went wrong!')
-    })
-}
 
 function clearExistingPosts() {
   if (postListEl.children.length > 0) {
@@ -43,26 +21,26 @@ function appendPost(post, postId) {
 async function fetchPosts() {
   try {
     clearExistingPosts()
-    const listOfPosts = await sendHttpRequest(
-      'GET',
+    const response = await axios.get(
       'https://jsonplaceholder.typicode.com/posts'
     )
-    for (const post of listOfPosts) {
+    for (const post of response.data) {
       appendPost(post, post.id)
     }
   } catch (error) {
-    alert(error)
+    alert(error.message)
   }
 }
 
-async function createPost(title, content) {
-  const userId = new Date().getTime()
-  const post = new FormData(newPostForm)
+async function createPost(title, body) {
+  const post = {
+    title,
+    body,
+    userId: new Date().getTime(),
+  }
 
-  post.append('userId', userId)
-
-  sendHttpRequest('POST', 'https://jsonplaceholder.typicode.com/posts', post)
-  appendPost({ title: title, body: content }, userId)
+  axios.post('https://jsonplaceholder.typicode.com/posts', post)
+  appendPost(post, post.userId)
 }
 
 fetchPostsBtn.addEventListener('click', fetchPosts)
@@ -79,10 +57,8 @@ newPostForm.addEventListener('submit', event => {
 postListEl.addEventListener('click', event => {
   if (event.target.tagName === 'BUTTON') {
     const postId = event.target.closest('li').id
-    sendHttpRequest(
-      'DELETE',
-      `https://jsonplaceholder.typicode.com/posts/${[postId]}`
-    )
+    axios
+      .delete(`https://jsonplaceholder.typicode.com/posts/${[postId]}`)
       .then(() => {
         document.querySelector(`li[id='${postId}']`).remove()
       })
