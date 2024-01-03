@@ -1,2 +1,2 @@
-# JS_pet
+# PetJavaScript
 Pet repository for practicing JavaScript
