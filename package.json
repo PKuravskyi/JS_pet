@@ -1,0 +1,22 @@
+{
+  "name": "petjavascript",
+  "version": "1.0.0",
+  "description": "Pet JavaScript",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/PKuravskyi/PetJavaScript.git"
+  },
+  "author": "Pavlo Kuravskyi",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/PKuravskyi/PetJavaScript/issues"
+  },
+  "homepage": "https://github.com/PKuravskyi/PetJavaScript#readme",
+  "devDependencies": {
+    "eslint": "^8.56.0"
+  }
+}
