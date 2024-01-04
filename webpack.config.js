@@ -6,7 +6,7 @@ module.exports = {
 	entry: path.resolve(__dirname, 'src', 'projectPlanner', 'App.js'),
 	output: {
 		path: path.resolve(__dirname, 'projectPlanner', 'assets', 'scripts'),
-		filename: '[name].[contenthash].js',
+		filename: 'App.js',
 		clean: true,
 	},
 	plugins: [
