@@ -9,6 +9,6 @@ export class DOMHelper {
 		const element = document.getElementById(elementId);
 		const destinationEl = document.querySelector(newDestinationSelector);
 		destinationEl.append(element);
-		element.scrollIntoView({ behavior: 'smooth' });
+		element.scrollIntoView({ behavior: 'instant' });
 	}
 }
