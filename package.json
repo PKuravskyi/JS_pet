@@ -1,22 +1,30 @@
 {
-  "name": "petjavascript",
-  "version": "1.0.0",
-  "description": "Pet JavaScript",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/PKuravskyi/PetJavaScript.git"
-  },
-  "author": "Pavlo Kuravskyi",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/PKuravskyi/PetJavaScript/issues"
-  },
-  "homepage": "https://github.com/PKuravskyi/PetJavaScript#readme",
-  "devDependencies": {
-    "eslint": "^8.56.0"
-  }
+	"name": "petjavascript",
+	"version": "1.0.0",
+	"description": "Pet JavaScript",
+	"main": "index.js",
+	"scripts": {
+		"build": "webpack",
+		"start": "webpack serve"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/PKuravskyi/PetJavaScript.git"
+	},
+	"author": "Pavlo Kuravskyi",
+	"license": "ISC",
+	"bugs": {
+		"url": "https://github.com/PKuravskyi/PetJavaScript/issues"
+	},
+	"homepage": "https://github.com/PKuravskyi/PetJavaScript#readme",
+	"devDependencies": {
+		"eslint": "^8.56.0",
+		"html-webpack-plugin": "^5.6.0",
+		"webpack": "^5.89.0",
+		"webpack-cli": "^5.1.4",
+		"webpack-dev-server": "^4.15.1"
+	},
+	"dependencies": {
+		"cross-env": "^7.0.3"
+	}
 }
