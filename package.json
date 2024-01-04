@@ -4,8 +4,10 @@
 	"description": "Pet JavaScript",
 	"main": "index.js",
 	"scripts": {
-		"build": "webpack",
-		"start": "webpack serve"
+		"build:dev": "webpack",
+		"build:prod": "webpack --config webpack.config.prod.js",
+		"start:dev": "webpack serve",
+		"start:prod": "webpack serve --config webpack.config.prod.js"
 	},
 	"repository": {
 		"type": "git",
