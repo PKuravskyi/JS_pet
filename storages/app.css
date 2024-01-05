@@ -1,0 +1,29 @@
+html {
+	font-family: sans-serif;
+}
+
+body {
+	margin: 3rem;
+}
+
+button {
+	margin-bottom: 1rem;
+	margin-right: 1rem;
+	font: inherit;
+	background: rgb(54, 54, 158);
+	color: white;
+	padding: 1rem 2rem;
+	cursor: pointer;
+	border: 1px solid rgb(54, 54, 158);
+	box-shadow: 1px 1px 6px rgba(0, 0, 0, 0.26);
+}
+
+button:focus {
+	outline: none;
+}
+
+button:hover,
+button:active {
+	background: #7904ff;
+	border-color: #7904ff;
+}
