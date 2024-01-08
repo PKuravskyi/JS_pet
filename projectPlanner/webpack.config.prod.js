@@ -3,10 +3,10 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
 	mode: 'production',
-	entry: path.resolve(__dirname, 'src', 'projectPlanner', 'App.js'),
+	entry: path.resolve(__dirname, 'src', 'App.js'),
 	output: {
-		path: path.resolve(__dirname, 'projectPlanner', 'assets', 'scripts'),
-		filename: '[contenthash].js',
+		path: path.resolve(__dirname, 'assets', 'scripts'),
+		filename: '[name].[contenthash].js',
 		clean: true,
 	},
 	module: {
@@ -30,11 +30,11 @@ module.exports = {
 	},
 	plugins: [
 		new HtmlWebpackPlugin({
-			template: path.resolve(__dirname, 'projectPlanner', 'index.html'),
+			template: path.resolve(__dirname, 'index.html'),
 		}),
 	],
 	devServer: {
-		static: path.resolve(__dirname, 'projectPlanner'),
+		static: path.resolve(__dirname),
 		open: true,
 	},
 };
