@@ -108,7 +108,7 @@ function showMe() {
 
 		audioEl.play();
 		headerImgEl.addEventListener('click', toggleAudio);
-		return headerImgEl.id;
+		return headerTextEl.textContent;
 	}
 
 	function denied() {
@@ -139,9 +139,11 @@ function showMe() {
 async function showMeHandler() {
 	try {
 		const result = await showMe();
+		// below will be executed only if above await is Resolved, otherwise catch() will be executed
 		if (result) {
 			console.log('Here you go');
 			console.log(result);
+			console.log('Do you like it? :)');
 		}
 	} catch (error) {
 		console.error(error);
