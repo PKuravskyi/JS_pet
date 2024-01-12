@@ -1,0 +1,33 @@
+{
+	"name": "js-testing-introduction",
+	"version": "1.0.0",
+	"description": "An introduction to JS testing",
+	"main": "app.js",
+	"scripts": {
+		"start": "webpack app.js --mode development --watch",
+		"test": "jest"
+	},
+	"keywords": [
+		"js",
+		"javascript",
+		"testing",
+		"jest",
+		"unit",
+		"tests",
+		"integration",
+		"tests",
+		"e2e",
+		"tests"
+	],
+	"author": "Pavlo Kuravskyi",
+	"license": "ISC",
+	"devDependencies": {
+		"jest": "^29.7.0",
+		"puppeteer": "^21.7.0",
+		"webpack": "^4.47.0",
+		"webpack-cli": "^3.3.12"
+	},
+	"dependencies": {
+		"@types/jest": "^29.5.11"
+	}
+}
