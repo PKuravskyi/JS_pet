@@ -39,12 +39,30 @@ class PlaceFinder {
 		} else {
 			this.map = new Map(coordinates);
 		}
-		this.shareBtn.disabled = false;
-		this.shareLinkInputEl.value = `${
-			location.origin
-		}/my-place?address=${encodeURI(address)}&lat=${coordinates.lat}&lng=${
-			coordinates.lng
-		}`;
+
+		fetch('http://localhost:3002/add-location', {
+			method: 'POST',
+			body: JSON.stringify({
+				address: address,
+				lat: coordinates.lat,
+				lng: coordinates.lng,
+			}),
+			headers: {
+				'Content-Type': 'application/json',
+			},
+		})
+			.then(response => {
+				return response.json();
+			})
+			.then(data => {
+				const locationId = data.locationId;
+
+				this.shareBtn.disabled = false;
+				this.shareLinkInputEl.value = `${location.origin}/my-place?location=${locationId}`;
+			})
+			.catch(err => {
+				throw new Error(err.message);
+			});
 	}
 
 	locateUserHandler() {

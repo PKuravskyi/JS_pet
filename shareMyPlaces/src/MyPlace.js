@@ -10,10 +10,20 @@ class MyPlace {
 
 const url = new URL(location.href);
 const queryParams = url.searchParams;
-const coordinates = {
-	lat: +queryParams.get('lat'),
-	lng: +queryParams.get('lng'),
-};
-const address = queryParams.get('address');
+const locationId = queryParams.get('location');
 
-new MyPlace(coordinates, address);
+if (locationId) {
+	fetch('http://localhost:3002/location/' + locationId)
+		.then(response => {
+			if (!response.ok) {
+				throw new Error('Could not find location!');
+			}
+			return response.json();
+		})
+		.then(data => {
+			new MyPlace(data.coordinates, data.address);
+		})
+		.catch(err => {
+			alert(err.message);
+		});
+}
