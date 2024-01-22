@@ -1,30 +1,30 @@
 {
-  "name": "nodejs",
-  "version": "1.0.0",
-  "description": "Pet Node.js project",
-  "main": "App.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+ssh://git@github.com/PKuravskyi/PetJavaScript.git"
-  },
-  "keywords": [
-    "javascript",
-    "nodejs"
-  ],
-  "author": "Pavlo Kuravskyi",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/PKuravskyi/PetJavaScript/issues"
-  },
-  "homepage": "https://github.com/PKuravskyi/PetJavaScript#readme",
-  "dependencies": {
-    "body-parser": "^1.20.2",
-    "ejs": "^3.1.9",
-    "express": "^4.18.2",
-    "express-mongo-sanitize": "^2.2.0",
-    "mongodb": "^6.3.0"
-  }
+	"name": "nodejs",
+	"version": "1.0.0",
+	"description": "Pet Node.js project",
+	"main": "App.js",
+	"scripts": {
+		"start": "node App.js"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+ssh://git@github.com/PKuravskyi/PetJavaScript.git"
+	},
+	"keywords": [
+		"javascript",
+		"nodejs"
+	],
+	"author": "Pavlo Kuravskyi",
+	"license": "ISC",
+	"bugs": {
+		"url": "https://github.com/PKuravskyi/PetJavaScript/issues"
+	},
+	"homepage": "https://github.com/PKuravskyi/PetJavaScript#readme",
+	"dependencies": {
+		"body-parser": "^1.20.2",
+		"ejs": "^3.1.9",
+		"express": "^4.18.2",
+		"express-mongo-sanitize": "^2.2.0",
+		"mongodb": "^6.3.0"
+	}
 }
