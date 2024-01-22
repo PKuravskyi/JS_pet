@@ -5,7 +5,7 @@ module.exports = {
 	mode: 'production',
 	entry: path.resolve(__dirname, 'src', 'App.js'),
 	output: {
-		path: path.resolve(__dirname, 'assets', 'scripts'),
+		path: path.resolve(__dirname, 'dist', 'assets', 'scripts'),
 		filename: '[name].[contenthash].js',
 		clean: true,
 	},
@@ -30,11 +30,11 @@ module.exports = {
 	},
 	plugins: [
 		new HtmlWebpackPlugin({
-			template: path.resolve(__dirname, 'index.html'),
+			template: path.resolve(__dirname, 'dist', 'index.html'),
 		}),
 	],
 	devServer: {
-		static: path.resolve(__dirname),
+		static: path.resolve(__dirname, 'dist'),
 		open: true,
 	},
 };
