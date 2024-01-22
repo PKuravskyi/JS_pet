@@ -37,10 +37,8 @@ const httpServer = http.createServer((request, response) => {
 	});
 });
 
-const httpServerPORT = process.env.PORT || 3000;
-
-httpServer.listen(httpServerPORT, () => {
-	console.log(`Server for HTTP testing is running on ${httpServerPORT}`);
+httpServer.listen(3000, () => {
+	console.log('Server for HTTP testing is running on http://localhost:3000/');
 });
 
 // ************************ HTTP with Express.js ************************
@@ -69,10 +67,10 @@ app.use((request, response) => {
 	});
 });
 
-const appPORT = process.env.PORT || 3001;
-
-app.listen(appPORT, () => {
-	console.log(`Server for Express.js testing is running on ${appPORT}`);
+app.listen(3001, () => {
+	console.log(
+		'Server for Express.js testing is running on http://localhost:3001/'
+	);
 });
 
 // ************************ REST
@@ -94,8 +92,6 @@ appRest.use((req, res, next) => {
 
 appRest.use(locationRoutes);
 
-const appRestPORT = process.env.PORT || 3002;
-
-appRest.listen(appRestPORT, () => {
-	console.log(`Server for REST testing is running on ${appRestPORT}`);
+appRest.listen(3002, () => {
+	console.log('Server for REST testing is running on http://localhost:3002/');
 });
