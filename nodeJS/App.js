@@ -82,6 +82,7 @@ const appRest = express();
 appRest.use(mongoSanitize())
 appRest.use(bodyParser.json());
 
+// Set allowed CORS
 appRest.use((req, res, next) => {
 	res.setHeader('Access-Control-Allow-Origin', '*');
 	res.setHeader('Access-Control-Allow-Methods', 'POST, GET, OPTIONS');
