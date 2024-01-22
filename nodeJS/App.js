@@ -25,7 +25,7 @@ const httpServer = http.createServer((request, response) => {
 	});
 	request.on('end', () => {
 		body = Buffer.concat(body).toString();
-		let userName = 'Unknown User';
+		let userName = '';
 		if (body) {
 			userName = body.split('=')[1];
 		}
@@ -37,8 +37,10 @@ const httpServer = http.createServer((request, response) => {
 	});
 });
 
-httpServer.listen(3000, () => {
-	console.log('Server for HTTP testing is running on http://localhost:3000/');
+const httpServerPORT = process.env.PORT || 3000;
+
+httpServer.listen(httpServerPORT, () => {
+	console.log(`Server for HTTP testing is running on ${httpServerPORT}`);
 });
 
 // ************************ HTTP with Express.js ************************
@@ -67,10 +69,10 @@ app.use((request, response) => {
 	});
 });
 
-app.listen(3001, () => {
-	console.log(
-		'Server for Express.js testing is running on http://localhost:3001/'
-	);
+const appPORT = process.env.PORT || 3001;
+
+app.listen(appPORT, () => {
+	console.log(`Server for Express.js testing is running on ${appPORT}`);
 });
 
 // ************************ REST
@@ -79,7 +81,7 @@ const locationRoutes = require('./routes/Location');
 
 const appRest = express();
 // Sanitize user input as a security measure to prevent NoSQL injections
-appRest.use(mongoSanitize())
+appRest.use(mongoSanitize());
 appRest.use(bodyParser.json());
 
 // Set CORS policies
@@ -92,6 +94,8 @@ appRest.use((req, res, next) => {
 
 appRest.use(locationRoutes);
 
-appRest.listen(3002, () => {
-	console.log('Server for REST testing is running on http://localhost:3002/');
+const appRestPORT = process.env.PORT || 3002;
+
+appRest.listen(appRestPORT, () => {
+	console.log(`Server for REST testing is running on ${appRestPORT}`);
 });
