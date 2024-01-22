@@ -95,5 +95,5 @@ appRest.use(locationRoutes);
 const appRestPort = process.env.PORT || 3002;
 
 appRest.listen(appRestPort, () => {
-	console.log(`Server for REST testing is running on ${appRestPORT}`);
+	console.log(`Server for REST testing is running on ${appRestPort}`);
 });
