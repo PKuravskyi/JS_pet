@@ -74,9 +74,12 @@ app.listen(3001, () => {
 });
 
 // ************************ REST
+const mongoSanitize = require('express-mongo-sanitize');
 const locationRoutes = require('./routes/Location');
 
 const appRest = express();
+// Sanitize user input as a security measure to prevent NoSQL injections
+appRest.use(mongoSanitize())
 appRest.use(bodyParser.json());
 
 appRest.use((req, res, next) => {

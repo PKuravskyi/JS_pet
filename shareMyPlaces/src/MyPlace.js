@@ -1,10 +1,12 @@
+import sanitizeHtml from 'sanitize-html';
 import { Map } from './UI/Map';
 
 class MyPlace {
 	constructor(coordinates, address) {
 		new Map(coordinates);
 		const headerTitleEl = document.querySelector('header h1');
-		headerTitleEl.textContent = address;
+		// sanitize html value as a security measure to prevent XSS attacks
+		headerTitleEl.innerHTML = sanitizeHtml(address);
 	}
 }
 
