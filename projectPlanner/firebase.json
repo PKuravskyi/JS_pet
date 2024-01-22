@@ -1,0 +1,6 @@
+{
+	"hosting": {
+		"public": "dist/assets/scripts",
+		"ignore": ["firebase.json", "**/.*", "**/node_modules/**"]
+	}
+}
