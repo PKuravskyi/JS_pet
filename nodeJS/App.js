@@ -61,7 +61,7 @@ app.use((request, response, next) => {
 app.use(bodyParser.urlencoded({ extended: false }));
 
 app.use((request, response) => {
-	const userName = request.body.username || 'Unknown User';
+	const userName = request.body.username || '';
 	response.render('index', {
 		user: userName,
 	});
