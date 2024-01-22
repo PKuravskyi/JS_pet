@@ -2,4 +2,4 @@
 
 Pet repository for practicing JavaScript
 
-projectPlanner app is deployed on https://petjs-projectplanner-c0592.web.app/ using Firebase static hosting
+projectPlanner app is deployed on https://petjs-projectplanner-c0592.web.app/ using Firebase
