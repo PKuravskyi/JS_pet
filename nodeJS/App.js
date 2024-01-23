@@ -73,7 +73,7 @@ app.listen(3001, () => {
 	);
 });
 
-// ************************ REST
+// ************************ REST (For Share My Place app) ************************
 const mongoSanitize = require('express-mongo-sanitize');
 const locationRoutes = require('./routes/Location');
 
@@ -81,6 +81,14 @@ const appRest = express();
 // Sanitize user input as a security measure to prevent NoSQL injections
 appRest.use(mongoSanitize());
 appRest.use(bodyParser.json());
+
+// Set CORS policies
+appRest.use((req, res, next) => {
+	res.setHeader('Access-Control-Allow-Origin', '*');
+	res.setHeader('Access-Control-Allow-Methods', 'POST, GET, OPTIONS');
+	res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
+	next();
+});
 
 appRest.set('view engine', 'ejs');
 appRest.set('views', 'views');
@@ -92,14 +100,6 @@ appRest.use((request, response, next) => {
 
 appRest.use((request, response, next) => {
 	response.render('shareMyPlaces');
-	next();
-});
-
-// Set CORS policies
-appRest.use((req, res, next) => {
-	res.setHeader('Access-Control-Allow-Origin', '*');
-	res.setHeader('Access-Control-Allow-Methods', 'POST, GET, OPTIONS');
-	res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
 	next();
 });
 
