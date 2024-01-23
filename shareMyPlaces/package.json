@@ -5,9 +5,9 @@
 	"main": "index.js",
 	"scripts": {
 		"build:dev": "webpack",
-		"build:prod": "webpack --config webpack.config.prod.js",
+		"build": "webpack --config webpack.config.prod.js",
 		"start:dev": "webpack serve",
-		"start:prod": "webpack serve --config webpack.config.prod.js"
+		"start": "webpack serve --config webpack.config.prod.js"
 	},
 	"author": "Pavlo Kuravskyi",
 	"license": "ISC",
