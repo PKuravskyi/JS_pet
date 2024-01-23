@@ -18,19 +18,12 @@ class PlaceFinder {
 	}
 
 	sharePlaceHandler() {
-		if (!navigator.clipboard) {
-			this.shareLinkInputEl.select();
-			return;
+		const link = this.shareLinkInputEl.value;
+		if (link.trim() !== '') {
+			window.location.href = link;
+		} else {
+			throw new Error('Empty link. Cannot redirect.');
 		}
-		navigator.clipboard
-			.writeText(this.shareLinkInputEl.value)
-			.then(() => {
-				alert('Copied to clipboard!');
-			})
-			.catch(error => {
-				this.shareLinkInputEl.select();
-				throw new Error(error);
-			});
 	}
 
 	selectPlace(coordinates, address) {
