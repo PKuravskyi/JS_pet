@@ -90,8 +90,9 @@ appRest.use((request, response, next) => {
 	next();
 });
 
-appRest.use((request, response) => {
+appRest.use((request, response, next) => {
 	response.render('shareMyPlaces');
+	next();
 });
 
 // Set CORS policies
