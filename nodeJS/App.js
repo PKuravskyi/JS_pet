@@ -82,6 +82,18 @@ const appRest = express();
 appRest.use(mongoSanitize());
 appRest.use(bodyParser.json());
 
+appRest.set('view engine', 'ejs');
+appRest.set('views', 'views');
+
+appRest.use((request, response, next) => {
+	response.setHeader('Contenty-Type', 'text/html');
+	next();
+});
+
+appRest.use((request, response) => {
+	response.render('shareMyPlaces');
+});
+
 // Set CORS policies
 appRest.use((req, res, next) => {
 	res.setHeader('Access-Control-Allow-Origin', '*');
@@ -95,5 +107,5 @@ appRest.use(locationRoutes);
 const appRestPort = process.env.PORT || 3002;
 
 appRest.listen(appRestPort, () => {
-	console.log(`Server for REST testing is running on ${appRestPort}`);
+	console.log(`Server for REST testing is running on PORT ${appRestPort}`);
 });

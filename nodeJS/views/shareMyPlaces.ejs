@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta
+			name="viewport"
+			content="width=device-width, initial-scale=1.0"
+		/>
+		<title>nodeJS server for Share My Places</title>
+		<style>
+			body {
+				text-align: center;
+				width: 100%;
+				height: 100vh;
+				margin: 0;
+				display: flex;
+				flex-direction: column;
+				justify-content: center;
+				align-items: center;
+				font-size: larger;
+				font-family: Verdana, Geneva, Tahoma, sans-serif;
+				overflow: hidden;
+				background-size: 300% 300%;
+				background-image: linear-gradient(
+					to left top,
+					#66ff66,
+					#ff99cc,
+					#ffdd00,
+					#0057b7
+				);
+				-webkit-animation: AnimateBG 8s ease infinite;
+				animation: AnimateBG 8s ease infinite;
+			}
+			@-webkit-keyframes AnimateBG {
+				0% {
+					background-position: 0% 5%;
+				}
+				50% {
+					background-position: 100% 95%;
+				}
+				100% {
+					background-position: 0% 5%;
+				}
+			}
+			@keyframes AnimateBG {
+				0% {
+					background-position: 0% 5%;
+				}
+				50% {
+					background-position: 100% 95%;
+				}
+				100% {
+					background-position: 0% 5%;
+				}
+			}
+		</style>
+	</head>
+	<body>
+		<h1>Hello there!</h1>
+		<p>
+			You accessed the server side, which means that I only handle API requests.
+		</p>
+		<p>
+			For the full experience of my power(!), please visit
+			<a href="https://petjs-sharemyplaces-61e5d.web.app/">Share My Places</a>
+			page.
+		</p>
+		<p>Have a good day 🙂</p>
+	</body>
+</html>
