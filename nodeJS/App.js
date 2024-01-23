@@ -97,17 +97,13 @@ appRest.use((req, res, next) => {
 appRest.set('view engine', 'ejs');
 appRest.set('views', 'views');
 
-appRest.use((request, response, next) => {
-	response.setHeader('Contenty-Type', 'text/html');
-	next();
-});
+appRest.use(locationRoutes);
 
 appRest.use((request, response, next) => {
+	response.setHeader('Contenty-Type', 'text/html');
 	response.render('shareMyPlaces');
 	next();
 });
-
-appRest.use(locationRoutes);
 
 const appRestPort = process.env.PORT || 3002;
 
