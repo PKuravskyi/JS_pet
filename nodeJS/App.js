@@ -37,9 +37,11 @@ const httpServer = http.createServer((request, response) => {
 	});
 });
 
-httpServer.listen(3000, () => {
-	console.log('Server for HTTP testing is running on http://localhost:3000/');
-});
+if (!process.env.PORT) {
+	httpServer.listen(3000, () => {
+		console.log('Server for HTTP testing is running on http://localhost:3000/');
+	});
+}
 
 // ************************ HTTP with Express.js ************************
 const express = require('express');
@@ -67,11 +69,13 @@ app.use((request, response) => {
 	});
 });
 
-app.listen(3001, () => {
-	console.log(
-		'Server for Express.js testing is running on http://localhost:3001/'
-	);
-});
+if (!process.env.PORT) {
+	app.listen(3001, () => {
+		console.log(
+			'Server for Express.js testing is running on http://localhost:3001/'
+		);
+	});
+}
 
 // ************************ REST (For Share My Place app) ************************
 const mongoSanitize = require('express-mongo-sanitize');
