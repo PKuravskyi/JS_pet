@@ -40,7 +40,7 @@ class PlaceFinder {
 			this.map = new Map(coordinates);
 		}
 
-		fetch('http://localhost:3002/add-location', {
+		fetch('https://petjs-sharemyplaces.onrender.com/add-location', {
 			method: 'POST',
 			body: JSON.stringify({
 				address: address,

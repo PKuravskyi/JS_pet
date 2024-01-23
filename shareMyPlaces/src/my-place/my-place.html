@@ -10,23 +10,19 @@
 			http-equiv="X-UA-Compatible"
 			content="ie=edge"
 		/>
-		<title>Share a Places</title>
+		<title>My Place</title>
 		<link
 			rel="icon"
-			href="assets/images/favicon/favicon.png"
+			href="../assets/images/favicon/favicon.png"
 		/>
 		<link
 			rel="stylesheet"
-			href="assets/styles/app.css"
+			href="../assets/styles/app.css"
 		/>
 		<link
 			rel="stylesheet"
-			href="assets/styles/share-place.css"
+			href="../assets/styles/my-place.css"
 		/>
-		<script
-			src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"
-			defer
-		></script>
 		<script>
 			(g => {
 				var h,
@@ -64,62 +60,18 @@
 					: (d[l] = (f, ...n) => r.add(f) && u().then(() => d[l](f, ...n)));
 			})({ key: 'AIzaSyB41DRUbKWJHPxaFjMAwdrzWzbVKartNGg', v: 'weekly' });
 		</script>
-		<script
-			src="assets/scripts/SharePlace.js"
-			defer
-		></script>
-	<script defer src="MyPlace.js"></script></head>
+	</head>
 	<body>
-		<template id="modal-template">
-			<div class="backdrop"></div>
-			<div class="modal"></div>
-		</template>
-		<template id="loading-modal-content">
-			<div class="modal__content centered">
-				<div class="lds-dual-ring"></div>
-			</div>
-		</template>
-
 		<header>
-			<h1>Share a Place!</h1>
+			<h1></h1>
 		</header>
 
 		<section id="selected-place">
-			<div id="map">
-				<p>
-					You haven't selected any place yet. Please enter an address or locate
-					yourself!
-				</p>
-			</div>
+			<div id="map"></div>
 		</section>
 
 		<section id="share-controls">
-			<input
-				id="share-link"
-				type="text"
-				readonly
-				value="Select a place to get a sharable link."
-			/>
-			<button
-				id="share-btn"
-				disabled
-			>
-				Share Place
-			</button>
-		</section>
-
-		<section id="place-data">
-			<form id="address-form">
-				<label for="address">Address</label>
-				<input
-					id="address"
-					type="text"
-					placeholder="Enter address..."
-					autocomplete="address-line1"
-				/>
-				<button type="submit">Find Place</button>
-			</form>
-			<button id="locate-btn">Get Current Location</button>
+			<a href="/">Share a New Place!</a>
 		</section>
 	</body>
 </html>

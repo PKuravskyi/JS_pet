@@ -15,7 +15,7 @@ const queryParams = url.searchParams;
 const locationId = queryParams.get('location');
 
 if (locationId) {
-	fetch('http://localhost:3002/location/' + locationId)
+	fetch('https://petjs-sharemyplaces.onrender.com/location/' + locationId)
 		.then(response => {
 			if (!response.ok) {
 				throw new Error('Could not find location!');

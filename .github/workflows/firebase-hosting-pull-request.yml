@@ -13,5 +13,5 @@ jobs:
       - uses: FirebaseExtended/action-hosting-deploy@v0
         with:
           repoToken: '${{ secrets.GITHUB_TOKEN }}'
-          firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_PETJS_PROJECTPLANNER_C0592 }}'
-          projectId: petjs-projectplanner-c0592
+          firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_PETJS_SHAREMYPLACES_61E5D }}'
+          projectId: petjs-sharemyplaces-61e5d
