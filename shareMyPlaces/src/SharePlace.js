@@ -94,11 +94,13 @@ class PlaceFinder {
 		}
 		const modal = new Modal('loading-modal-content', 'Getting location...');
 		modal.show();
-		const coordinates = await getCoordinatesFromAddress(address);
 		try {
+			const coordinates = await getCoordinatesFromAddress(address);
 			this.selectPlace(coordinates, address);
-		} catch (error) {
-			alert(error.message);
+		} catch {
+			modal.hide();
+			alert('Address was not found. Did you enter correct address?');
+			return;
 		}
 		modal.hide();
 	}
