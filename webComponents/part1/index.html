@@ -7,6 +7,16 @@
 			content="width=device-width, initial-scale=1.0"
 		/>
 		<title>Web Components</title>
+		<style>
+			* {
+				box-sizing: border-box;
+			}
+
+			html {
+				--color-primary: #a4e6fc;
+				font-family: Verdana, Geneva, Tahoma, sans-serif;
+			}
+		</style>
 		<script
 			src="Tooltip.js"
 			defer
@@ -20,12 +30,13 @@
 		<p>
 			The basic
 			<pk-tooltip
+				class="important"
 				text="Web Components is a suite of different technologies allowing you to create reusable custom elements"
-				>Web Component</pk-tooltip
-			>
+				><span class="highlight"><a href="">Web Component</a></span>
+			</pk-tooltip>
 			tooltip
 		</p>
-		<p><pk-tooltip>JavaScript</pk-tooltip> is awesome!</p>
+		<pk-tooltip>JavaScript</pk-tooltip> is awesome!
 		<p>
 			Visit my pet JavaScript project -
 			<a
