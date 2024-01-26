@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta
+			name="viewport"
+			content="width=device-width, initial-scale=1.0"
+		/>
+		<title>Web Components</title>
+		<script
+			src="Tooltip.js"
+			defer
+		></script>
+		<script
+			src="ConfirmLink.js"
+			defer
+		></script>
+	</head>
+	<body>
+		<p>
+			The basic
+			<pk-tooltip
+				text="Web Components is a suite of different technologies allowing you to create reusable custom elements"
+				>Web Component</pk-tooltip
+			>
+			tooltip
+		</p>
+		<p><pk-tooltip>JavaScript</pk-tooltip> is awesome!</p>
+		<p>
+			Visit
+			<a
+				is="pk-confirm-link"
+				href="https://petjs-projectplanner-c0592.web.app/"
+				>Share My Place app!</a
+			>
+		</p>
+	</body>
+</html>
