@@ -1,7 +1,7 @@
 {
 	"name": "my-place",
 	"version": "1.0.0",
-	"description": "",
+	"description": "Pet project for Share My Place application",
 	"main": "index.js",
 	"scripts": {
 		"build:dev": "webpack",
