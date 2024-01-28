@@ -11,6 +11,7 @@ module.exports = {
 		],
 	},
 	output: {
+		publicPath: '/',
 		path: path.resolve(__dirname, 'dist', 'assets', 'scripts'),
 		filename: '[name].js',
 		clean: true,

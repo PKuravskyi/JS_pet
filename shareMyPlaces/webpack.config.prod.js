@@ -8,6 +8,7 @@ module.exports = {
 		'share-place': path.resolve(__dirname, 'src', 'SharePlace.js'),
 	},
 	output: {
+		publicPath: '/',
 		path: path.resolve(__dirname, 'dist', 'assets', 'scripts'),
 		filename: '[name].[contenthash].js',
 		clean: true,
