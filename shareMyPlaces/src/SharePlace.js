@@ -9,6 +9,7 @@ class PlaceFinder {
 	constructor() {
 		const addressForm = document.getElementById('address-form');
 		const locateUserBtn = document.getElementById('locate-btn');
+		this.addressTitleEl = document.getElementById('address-title');
 		this.shareLinkInputEl = document.getElementById('share-link');
 		this.shareBtn = document.getElementById('share-btn');
 
@@ -33,7 +34,7 @@ class PlaceFinder {
 			this.map = new Map(coordinates);
 		}
 
-		fetch('https://petjs-sharemyplaces.onrender.com/add-location', {
+		fetch('https://pkuravskyi-sharemyplaces.up.railway.app/add-location', {
 			method: 'POST',
 			body: JSON.stringify({
 				address: address,
@@ -56,6 +57,7 @@ class PlaceFinder {
 			.catch(err => {
 				throw new Error(err.message);
 			});
+		return getAddressFromCoordinates(coordinates);
 	}
 
 	locateUserHandler() {
@@ -76,7 +78,10 @@ class PlaceFinder {
 				};
 				const address = await getAddressFromCoordinates(coordinates);
 				modal.hide();
-				this.selectPlace(coordinates, address);
+				this.addressTitleEl.textContent = await this.selectPlace(
+					coordinates,
+					address
+				);
 			},
 			error => {
 				modal.hide();
@@ -96,7 +101,10 @@ class PlaceFinder {
 		modal.show();
 		try {
 			const coordinates = await getCoordinatesFromAddress(address);
-			this.selectPlace(coordinates, address);
+			this.addressTitleEl.textContent = await this.selectPlace(
+				coordinates,
+				address
+			);
 		} catch {
 			modal.hide();
 			alert('Address was not found. Did you enter correct address?');

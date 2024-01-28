@@ -15,7 +15,9 @@ const queryParams = url.searchParams;
 const locationId = queryParams.get('location');
 
 if (locationId) {
-	fetch('https://petjs-sharemyplaces.onrender.com/location/' + locationId)
+	fetch(
+		'https://pkuravskyi-sharemyplaces.up.railway.app/location/' + locationId
+	)
 		.then(response => {
 			if (!response.ok) {
 				throw new Error('Could not find location!');
