@@ -13,6 +13,10 @@ module.exports = {
 		filename: '[name].[contenthash].js',
 		clean: true,
 	},
+	devServer: {
+		static: path.resolve(__dirname, 'dist'),
+		open: true,
+	},
 	module: {
 		rules: [
 			{
@@ -44,8 +48,4 @@ module.exports = {
 			filename: path.resolve(__dirname, 'dist', 'my-place', 'index.html'),
 		}),
 	],
-	devServer: {
-		static: path.resolve(__dirname, 'dist'),
-		open: true,
-	},
 };
