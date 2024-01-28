@@ -2,8 +2,8 @@
 
 ## [Project Planner](projectPlanner) Application
 
-Deployed on [Firebase](https://petjs-projectplanner-c0592.web.app/).  
-This application utilizes Drag and Drop functionality to manage projects, allowing users to switch projects between active and finished statuses.
+**Frontend Deployment:** [Firebase](https://petjs-projectplanner-c0592.web.app/)  
+This single-page application utilizes Drag and Drop functionality to manage projects, allowing users to switch projects between active and finished statuses.
 
 ## [Share My Places](shareMyPlaces) Application
 
