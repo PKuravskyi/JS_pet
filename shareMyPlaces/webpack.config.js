@@ -3,12 +3,9 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
 	mode: 'development',
-	// USE THIS ENTRY STRUCTURE WHEN USING MULTIPLE ENTRIES!!!
 	entry: {
-		MyPlace: [
-			path.resolve(__dirname, 'src', 'MyPlace.js'),
-			path.resolve(__dirname, 'src', 'SharePlace.js'),
-		],
+		SharePlace: path.resolve(__dirname, 'src', 'SharePlace.js'),
+		MyPlace: path.resolve(__dirname, 'src', 'MyPlace.js'),
 	},
 	output: {
 		publicPath: '/',
@@ -44,10 +41,12 @@ module.exports = {
 		new HtmlWebpackPlugin({
 			template: path.resolve(__dirname, 'src', 'index.html'),
 			filename: path.resolve(__dirname, 'dist', 'index.html'),
+			chunks: ['SharePlace'],
 		}),
 		new HtmlWebpackPlugin({
 			template: path.resolve(__dirname, 'src', 'my-place', 'my-place.html'),
 			filename: path.resolve(__dirname, 'dist', 'my-place', 'index.html'),
+			chunks: ['MyPlace'],
 		}),
 	],
 };
