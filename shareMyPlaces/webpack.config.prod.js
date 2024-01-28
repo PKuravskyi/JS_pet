@@ -34,10 +34,12 @@ module.exports = {
 	},
 	plugins: [
 		new HtmlWebpackPlugin({
+			minify: true,
 			template: path.resolve(__dirname, 'src', 'index.html'),
 			filename: path.resolve(__dirname, 'dist', 'index.html'),
 		}),
 		new HtmlWebpackPlugin({
+			minify: true,
 			template: path.resolve(__dirname, 'src', 'my-place', 'my-place.html'),
 			filename: path.resolve(__dirname, 'dist', 'my-place', 'index.html'),
 		}),
