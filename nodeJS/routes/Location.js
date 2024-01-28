@@ -19,9 +19,9 @@ router.post('/add-location', async (req, res) => {
 			coords: { lat: req.body.lat, lng: req.body.lng },
 		});
 		res.json({ message: 'Stored location!', locationId: result.insertedId });
-		console.log(`\nResult: ${result}\n`);
 		console.log(
-			`\nNew location was added:`,
+			'=============================================',
+			'\nNew location was added:',
 			'\n_id: ' + result.insertedId.toString(),
 			'\naddress: ' + req.body.address,
 			'\ncoords: ' + `{ lat: ${req.body.lat}, lng: ${req.body.lng} }`
