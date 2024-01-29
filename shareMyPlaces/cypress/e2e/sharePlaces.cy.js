@@ -1,9 +1,18 @@
 /// <reference types="Cypress" />
 
 describe('Share a Places', () => {
+	beforeEach(() => {
+		cy.visit('/');
+	});
+
 	it('should be possible to find place by address', () => {
-		cy.visit('http://localhost:8080/');
-		cy.get('#address').type('Ivano-Frankivsk');
-		cy.get('#find-btn').click();
+		cy.getByDataCyId('address-input').type('Ivano-Frankivsk');
+		cy.get('button').contains('Find Place').click();
+		cy.verifyAddressTitleNotEmpty();
+	});
+
+	it('should be possible to find user location', () => {
+		cy.getByDataCyId('locate-btn').click();
+		cy.verifyAddressTitleNotEmpty();
 	});
 });
