@@ -23,3 +23,12 @@
 //
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
+
+Cypress.Commands.add('verifyAddressTitleNotEmpty', () => {
+	cy.get('#address-title').should('not.be.empty');
+});
+
+Cypress.Commands.addQuery('getByDataCyId', id => {
+	const getByDataCyId = cy.now('get', `[data-cy="${id}"]`);
+	return () => getByDataCyId();
+});
