@@ -53,7 +53,10 @@
 		</header>
 
 		<header>
-			<h4 id="address-title"></h4>
+			<h4
+				id="address-title"
+				data-cy="address-title"
+			></h4>
 		</header>
 
 		<section id="selected-place">
@@ -69,12 +72,14 @@
 			<label for="share-link">Shareable link</label>
 			<input
 				id="share-link"
+				data-cy="share-link"
 				type="text"
 				readonly
 				value="Select a place to get a sharable link."
 			/>
 			<button
 				id="share-btn"
+				data-cy="share-btn"
 				disabled
 			>
 				Share Place
@@ -87,12 +92,23 @@
 				<input
 					id="address"
 					type="text"
+					data-cy="address-input"
 					placeholder="Enter address..."
 					autocomplete="address-line1"
 				/>
-				<button type="submit">Find Place</button>
+				<button
+					type="submit"
+					data-cy="submit-btn"
+				>
+					Find Place
+				</button>
 			</form>
-			<button id="locate-btn">Get Current Location</button>
+			<button
+				id="locate-btn"
+				data-cy="locate-btn"
+			>
+				Get Current Location
+			</button>
 		</section>
 	</body>
 </html>
