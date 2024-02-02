@@ -22,13 +22,13 @@ describe('Share a Places', () => {
 		});
 	});
 
-	it('Verify user location finding', () => {
+	it('should be possible to find user location', () => {
 		cy.getByDataCyId('locate-btn').click();
 		cy.get('@getUserLocation').should('have.been.called');
 		cy.verifyAddressTitleNotEmpty();
 	});
 
-	it('Verify address adding by Find Place, UI -> BE', () => {
+	it('should be possible to add address by Find Place, UI -> BE', () => {
 		cy.intercept('/add-location').as('addedLocation');
 
 		sharePlacePage.typeIntoInput('address-input', 'Lviv');
@@ -44,7 +44,7 @@ describe('Share a Places', () => {
 		});
 	});
 
-	it('Verify address adding by Find Place, BE -> UI', () => {
+	it('should be possible to add address by Find Place, BE -> UI', () => {
 		cy.fixture('addressRequest').then(fixture => {
 			locationsEndpoint.post('add-location', fixture, 'postAddress');
 		});
