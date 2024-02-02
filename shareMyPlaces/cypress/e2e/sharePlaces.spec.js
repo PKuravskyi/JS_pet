@@ -35,11 +35,8 @@ describe('Share a Places', () => {
 		cy.verifyAddressTitleNotEmpty();
 	});
 
-	it.only('should be possible to send and receive API call that adds location to DB', () => {
-		cy.intercept(
-			'POST',
-			'https://pkuravskyi-sharemyplaces.up.railway.app/add-location'
-		).as('postLocation');
+	it('should be possible to send and receive API call that adds location to DB', () => {
+		cy.intercept({ method: 'Post', path: 'add-location' }).as('postLocation');
 
 		sharePlacePage.typeIntoInput('address-input', 'Ivano-Frankivsk');
 		cy.get('button').contains('Find Place').click();
@@ -49,6 +46,24 @@ describe('Share a Places', () => {
 			expect(api.request.body.address).to.eq('Ivano-Frankivsk');
 			expect(api.request.body.lat).to.match(/\d+/);
 			expect(api.request.body.lng).to.match(/\d+/);
+		});
+	});
+
+	it.only('should be possible to add address via BE', () => {
+		cy.fixture('addressRequest').then(fixture => {
+			cy.request({
+				method: 'POST',
+				url: 'https://pkuravskyi-sharemyplaces.up.railway.app/add-location',
+				body: fixture,
+			}).then(response => {
+				expect(response.status).to.eq(200);
+				cy.wrap(response.body).as('postAddress');
+			});
+		});
+
+		cy.get('@postAddress').then(postAddress => {
+			cy.visit(`my-place/?location=${postAddress.locationId}`);
+			cy.get('h1').should('have.text', 'Hoverla');
 		});
 	});
 });
