@@ -2,17 +2,12 @@
 import { sharePlacePage } from '../support/pages/sharePlacesPage';
 
 describe('My Place', () => {
-	beforeEach(() => {
-		cy.fixture('coordinates.json').as('coords');
+	it('should be possible to mock API call to get different address', () => {
 		cy.visit('/');
-	});
 
-	it('should be possible to mock API to get different address', () => {
-		cy.intercept(
-			'GET',
-			'https://pkuravskyi-sharemyplaces.up.railway.app/location/*',
-			{ fixture: 'addressResponse.json' } // .json extension can be ommited, cypress looks for .json by default
-		).as('getLocation');
+		cy.intercept('GET', '**/location/*', { fixture: 'addressResponse' }).as(
+			'getLocation'
+		);
 
 		sharePlacePage.typeIntoInput('address-input', 'Japan Tokyo');
 		cy.get('button').contains('Find Place').click();
