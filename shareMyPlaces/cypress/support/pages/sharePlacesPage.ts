@@ -1,8 +1,9 @@
 import { BasePage } from './basePage';
 
 class SharePlacesPage extends BasePage {
-	typeIntoInput(locator, text) {
-		cy.getByDataCyId(locator).type(text);
+	typeIntoInput(locator: string, text: string | number) {
+		cy.getByDataCyId(locator).type(String(text));
+		return cy;
 	}
 }
 

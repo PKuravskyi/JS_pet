@@ -8,14 +8,7 @@ describe('Share a Places', () => {
 			cy.get('@coords').then(coords => {
 				cy.stub(win.navigator.geolocation, 'getCurrentPosition')
 					.as('getUserLocation')
-					.callsFake(
-						successCallback => {
-							successCallback(coords);
-						},
-						errorCallback => {
-							errorCallback(new Error('Geolocation error'));
-						}
-					);
+					.callsFake(successCallback => successCallback(coords));
 			});
 		});
 	});

@@ -26,9 +26,10 @@
 
 Cypress.Commands.add('verifyAddressTitleNotEmpty', () => {
 	cy.get('#address-title').should('not.be.empty');
+	return cy;
 });
 
-Cypress.Commands.addQuery('getByDataCyId', id => {
-	const getByDataCyId = cy.now('get', `[data-cy="${id}"]`);
-	return () => getByDataCyId();
+Cypress.Commands.add('getByDataCyId', id => {
+	cy.get(`[data-cy="${id}"]`);
+	return cy;
 });

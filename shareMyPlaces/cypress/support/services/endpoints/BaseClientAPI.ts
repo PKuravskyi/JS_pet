@@ -1,9 +1,16 @@
 export class BaseClientApi {
+	baseApiUrl: string;
+
 	constructor() {
 		this.baseApiUrl = 'https://pkuravskyi-sharemyplaces.up.railway.app/';
 	}
 
-	post = (endpoint, payload, responseVarName, status = 200) => {
+	post = (
+		endpoint: string,
+		payload: object,
+		responseVarName: string,
+		status = 200
+	) => {
 		cy.request({
 			method: 'POST',
 			url: this.baseApiUrl + endpoint,
@@ -14,7 +21,7 @@ export class BaseClientApi {
 		});
 	};
 
-	get = (endpoint, responseVarName, status = 200) => {
+	get = (endpoint: string, responseVarName: string, status = 200) => {
 		cy.request({
 			method: 'GET',
 			url: this.baseApiUrl + endpoint,
@@ -24,11 +31,14 @@ export class BaseClientApi {
 		});
 	};
 
-	#verifyResponse(response, status) {
+	#verifyResponse(response: Cypress.Response<any>, status: number) {
 		expect(response.status).to.eq(status);
 	}
 
-	#storeResponseBody(response, responseVariableName) {
+	#storeResponseBody(
+		response: Cypress.Response<any>,
+		responseVariableName: string
+	) {
 		cy.wrap(response.body).as(responseVariableName);
 	}
 }

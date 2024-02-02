@@ -8,12 +8,12 @@ class LocationsEndpoint extends BaseClientApi {
 		super();
 	}
 
-	addLocation(payload, responseVarName) {
-		this.post(ADD_LOCATION_ENDPOINT, payload, responseVarName);
+	addLocation(payload: object, responseVarName: string) {
+		this.post(this.ADD_LOCATION_ENDPOINT, payload, responseVarName);
 	}
 
-	retrieveLocation(locationId, responseVarName) {
-		this.get(GET_LOCATION_ENDPOINT + locationId, responseVarName);
+	retrieveLocation(locationId: string, responseVarName: string) {
+		this.get(this.GET_LOCATION_ENDPOINT + locationId, responseVarName);
 	}
 }
 
