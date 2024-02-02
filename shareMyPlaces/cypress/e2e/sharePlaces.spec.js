@@ -1,9 +1,10 @@
 /// <reference types="Cypress" />
+
 import { sharePlacePage } from '../support/pages/sharePlacesPage';
+import { locationsEndpoint } from '../support/services/endpoints/LocationsEndpoint';
 
 describe('Share a Places', () => {
 	beforeEach(() => {
-		cy.clock();
 		cy.fixture('coordinates.json').as('coords');
 		cy.visit('/').then(win => {
 			cy.get('@coords').then(coords => {
@@ -21,44 +22,31 @@ describe('Share a Places', () => {
 		});
 	});
 
-	it('should be possible to find place by address', () => {
-		sharePlacePage.typeIntoInput('address-input', 'Ivano-Frankivsk');
-		cy.get('button').contains('Find Place').click();
-		cy.tick(3000);
-		cy.verifyAddressTitleNotEmpty();
-	});
-
-	it('should be possible to find user location', () => {
+	it('Verify user location finding', () => {
 		cy.getByDataCyId('locate-btn').click();
-		cy.tick(3000);
 		cy.get('@getUserLocation').should('have.been.called');
 		cy.verifyAddressTitleNotEmpty();
 	});
 
-	it('should be possible to send and receive API call that adds location to DB', () => {
-		cy.intercept({ method: 'Post', path: 'add-location' }).as('postLocation');
+	it('Verify address adding by Find Place, UI -> BE', () => {
+		cy.intercept('/add-location').as('addedLocation');
 
-		sharePlacePage.typeIntoInput('address-input', 'Ivano-Frankivsk');
+		sharePlacePage.typeIntoInput('address-input', 'Lviv');
 		cy.get('button').contains('Find Place').click();
 
-		cy.wait('@postLocation').then(api => {
-			expect(api.response.statusCode).to.eq(200);
-			expect(api.request.body.address).to.eq('Ivano-Frankivsk');
-			expect(api.request.body.lat).to.match(/\d+/);
-			expect(api.request.body.lng).to.match(/\d+/);
+		cy.wait('@addedLocation').then(location => {
+			const locationReqBody = location.request.body;
+
+			expect(location.response.statusCode).to.eq(200);
+			expect(locationReqBody.address).to.eq('Lviv');
+			expect(locationReqBody.lat).to.match(/\d+/);
+			expect(locationReqBody.lng).to.match(/\d+/);
 		});
 	});
 
-	it.only('should be possible to add address via BE', () => {
+	it('Verify address adding by Find Place, BE -> UI', () => {
 		cy.fixture('addressRequest').then(fixture => {
-			cy.request({
-				method: 'POST',
-				url: 'https://pkuravskyi-sharemyplaces.up.railway.app/add-location',
-				body: fixture,
-			}).then(response => {
-				expect(response.status).to.eq(200);
-				cy.wrap(response.body).as('postAddress');
-			});
+			locationsEndpoint.post('add-location', fixture, 'postAddress');
 		});
 
 		cy.get('@postAddress').then(postAddress => {
