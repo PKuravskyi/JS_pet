@@ -1,4 +1,3 @@
-/// <reference types="Cypress" />
 import { sharePlacePage } from '../support/pages/sharePlacesPage';
 
 describe('My Place', () => {

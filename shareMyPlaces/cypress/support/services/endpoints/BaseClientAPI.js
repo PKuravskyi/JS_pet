@@ -1,5 +1,3 @@
-/// <reference types="Cypress" />
-
 export class BaseClientApi {
 	constructor() {
 		this.baseApiUrl = 'https://pkuravskyi-sharemyplaces.up.railway.app/';

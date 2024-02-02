@@ -1,5 +1,3 @@
-/// <reference types="Cypress" />
-
 import { sharePlacePage } from '../support/pages/sharePlacesPage';
 import { locationsEndpoint } from '../support/services/endpoints/LocationsEndpoint';
 
